@@ -625,8 +625,8 @@ static ssize_t gp2a_light_raw_data_show(struct device *dev,
 	struct gp2a_data *data = dev_get_drvdata(dev);
 
 	unsigned char get_data[4] = { 0, };
-	int d0_raw_data;
-	int d1_raw_data;
+	int d0_raw_data = 0;
+	int d1_raw_data = 0;
 	int ret = 0;
 
 	if (bShutdown == true){
@@ -1057,7 +1057,7 @@ static ssize_t gp2a_prox_cal_show(struct device *dev,
 				struct device_attribute *attr, char *buf)
 {
 	struct gp2a_data *data = dev_get_drvdata(dev);
-	int thresh_hi, thresh_low;
+	int thresh_hi = 0, thresh_low = 0;
 	unsigned char get_D2_data[4];
 
 	if (bShutdown == true){

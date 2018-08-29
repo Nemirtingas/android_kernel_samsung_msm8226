@@ -125,7 +125,7 @@ static u32 __mdss_mdp_ctrl_perf_ovrd_helper(struct mdss_mdp_mixer *mixer,
 static void __mdss_mdp_ctrl_perf_ovrd(struct mdss_data_type *mdata,
 	u64 *ab_quota, u64 *ib_quota)
 {
-	struct mdss_mdp_ctl *ctl;
+	struct mdss_mdp_ctl *ctl = NULL;
 	u32 i, npipe = 0, ovrd = 0;
 
 	for (i = 0; i < mdata->nctl; i++) {
