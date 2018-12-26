@@ -4382,6 +4382,12 @@ qpnp_batt_power_set_property(struct power_supply *psy,
 		case POWER_SUPPLY_TYPE_UNKNOWN:
 			new_cable_type = CABLE_TYPE_INCOMPATIBLE;
 			break;
+        case POWER_SUPPLY_TYPE_OTG:
+			new_cable_type = CABLE_TYPE_OTG;
+            if( qpnp_chg_regulator_otg_enable(chip->otg_vreg.rdev) ) {
+            } else {
+            }
+            break;
 		default:
 			return -EINVAL;
 		}
@@ -4390,6 +4396,13 @@ qpnp_batt_power_set_property(struct power_supply *psy,
 			pr_err("%s: same cable, no change in cable type (%d) \n",
 				__func__,chip->cable_type);
 		} else {
+            /* If we were using OTG */
+            if( chip->cable_type == CABLE_TYPE_OTG ) {
+                /* Better disable it :) */
+                if( qpnp_chg_regulator_otg_disable(chip->otg_vreg.rdev) ) {
+                } else {
+                }
+            }
 			pr_err("%s: cable type changed (%d) -> (%d) \n",__func__,
 					chip->cable_type,new_cable_type);
 			chip->cable_type = new_cable_type;
