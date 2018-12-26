@@ -953,6 +953,40 @@ void usb_rebind_intf(struct usb_interface *intf)
 
 #ifdef CONFIG_PM
 
+#define DO_UNBIND	0
+#define DO_REBIND	1
+/* Unbind drivers for @udev's interfaces that don't support suspend/resume,
+ * or rebind interfaces that have been unbound, according to @action.
+ *
+ * The caller must hold @udev's device lock.
+ */
+static void do_unbind_rebind(struct usb_device *udev, int action)
+{
+	struct usb_host_config	*config;
+	int			i;
+	struct usb_interface	*intf;
+	struct usb_driver	*drv;
+	config = udev->actconfig;
+	if (config) {
+		for (i = 0; i < config->desc.bNumInterfaces; ++i) {
+			intf = config->interface[i];
+			switch (action) {
+			case DO_UNBIND:
+				if (intf->dev.driver) {
+					drv = to_usb_driver(intf->dev.driver);
+					if (!drv->suspend || !drv->resume)
+						usb_forced_unbind_intf(intf);
+				}
+				break;
+			case DO_REBIND:
+				if (intf->needs_binding)
+					usb_rebind_intf(intf);
+				break;
+			}
+		}
+	}
+}
+
 /* Unbind drivers for @udev's interfaces that don't support suspend/resume
  * There is no check for reset_resume here because it can be determined
  * only during resume whether reset_resume is needed.
