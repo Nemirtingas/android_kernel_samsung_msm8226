@@ -3004,11 +3004,9 @@ qpnp_batt_power_get_property(struct power_supply *psy,
 		case CABLE_TYPE_CDP:
 			val->intval = POWER_SUPPLY_TYPE_USB_CDP;
 			break;
-/*
 		case CABLE_TYPE_OTG:
 			val->intval = POWER_SUPPLY_TYPE_OTG;
 			break;
-*/
 		case CABLE_TYPE_CARDOCK:
 			val->intval = POWER_SUPPLY_TYPE_CARDOCK;
 			break;
@@ -5479,11 +5477,9 @@ ssize_t sec_bat_show_attrs(struct device *dev,
                 case CABLE_TYPE_CDP:
                         val = POWER_SUPPLY_TYPE_USB_CDP;
                         break;
-/*
                 case CABLE_TYPE_OTG:
                         val = POWER_SUPPLY_TYPE_OTG;
                        break;
-*/
                 default:
                         val = POWER_SUPPLY_TYPE_UNKNOWN;
                         break;
