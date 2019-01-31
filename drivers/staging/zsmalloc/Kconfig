@@ -1,5 +1,6 @@
 config ZSMALLOC
 	bool "Memory allocator for compressed pages"
+	depends on MMU
 	default n
 	help
 	  zsmalloc is a slab-based memory allocator designed to store
@@ -8,3 +9,4 @@ config ZSMALLOC
 	  non-standard allocator interface where a handle, not a pointer, is
 	  returned by an alloc().  This handle must be mapped in order to
 	  access the allocated space.
+
