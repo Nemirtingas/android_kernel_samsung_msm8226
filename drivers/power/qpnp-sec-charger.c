@@ -3087,7 +3087,7 @@ qpnp_chg_ibatsafe_set(struct qpnp_chg_chip *chip, int safe_current)
 
 #ifdef SEC_CHARGER_CODE
 #define QPNP_CHG_ITERM_MIN_MA           100
-#define QPNP_CHG_ITERM_MAX_MA           250
+#define QPNP_CHG_ITERM_MAX_MA           500
 #define QPNP_CHG_ITERM_STEP_MA          50
 #define QPNP_CHG_ITERM_MASK             0x03
 static int
@@ -3097,6 +3097,7 @@ qpnp_chg_ibatterm_set(struct qpnp_chg_chip *chip, int term_current)
 	u8 ibat_term_reg = 0;
 	int rc;
 
+	//pr_err("NEMIR_DEBUG: SEC Setting charging current: %d <= %d <= %d", QPNP_CHG_ITERM_MIN_MA, term_current, QPNP_CHG_ITERM_MAX_MA);
 	if (term_current < QPNP_CHG_ITERM_MIN_MA
 		|| term_current > QPNP_CHG_ITERM_MAX_MA) {
 		pr_err("bad mA=%d asked to set, setting %dmA instead\n",
@@ -3126,7 +3127,7 @@ qpnp_chg_ibatterm_set(struct qpnp_chg_chip *chip, int term_current)
 
 #else
 #define QPNP_CHG_ITERM_MIN_MA		100
-#define QPNP_CHG_ITERM_MAX_MA		250
+#define QPNP_CHG_ITERM_MAX_MA		500
 #define QPNP_CHG_ITERM_STEP_MA		50
 #define QPNP_CHG_ITERM_MASK			0x03
 static int
@@ -3134,6 +3135,7 @@ qpnp_chg_ibatterm_set(struct qpnp_chg_chip *chip, int term_current)
 {
 	u8 temp;
 
+	//pr_err("NEMIR_DEBUG: Setting charging current: %d <= %d <= %d", QPNP_CHG_ITERM_MIN_MA, term_current, QPNP_CHG_ITERM_MAX_MA);
 	if (term_current < QPNP_CHG_ITERM_MIN_MA
 			|| term_current > QPNP_CHG_ITERM_MAX_MA) {
 		pr_err("bad mA=%d asked to set\n", term_current);
