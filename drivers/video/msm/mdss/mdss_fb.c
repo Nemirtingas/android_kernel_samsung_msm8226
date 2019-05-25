@@ -2783,6 +2783,8 @@ int __init mdss_fb_init(void)
 {
 	int rc = -ENODEV;
 
+	pr_err("NEMIR_DEBUG: mdss_fb");
+
 	if (platform_driver_register(&mdss_fb_driver))
 		return rc;
 
