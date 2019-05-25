@@ -4672,7 +4672,8 @@ static int bt532_ts_probe(struct i2c_client *client,
 #endif
 
 #if defined(CONFIG_PM_RUNTIME)
-//	pm_runtime_enable(&client->dev);
+	pm_runtime_enable(&client->dev);
+	pm_runtime_allow(&client->dev);
 #endif
 
 	sema_init(&info->raw_data_lock, 1);
@@ -4781,6 +4782,9 @@ static int bt532_ts_remove(struct i2c_client *client)
 
 #ifdef CONFIG_HAS_EARLYSUSPEND
 	unregister_early_suspend(&info->early_suspend);
+#endif
+#ifdef CONFIG_PM_RUNTIME
+	pm_runtime_forbid(&client->dev);
 #endif
 
 	if (gpio_is_valid(pdata->gpio_int) != 0)
