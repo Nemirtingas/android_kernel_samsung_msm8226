@@ -7116,7 +7116,7 @@ qpnp_charger_probe(struct spmi_device *spmi)
 	chip->ui_full_cnt = 0;
 	chip->siop_level = 100;
 	chip->batt_present = qpnp_chg_is_batt_present(chip);
-#if defined(CONFIG_MACH_KANAS3G_CTC) || defined(CONFIG_MACH_MS01_EUR_3G) || defined(CONFIG_MACH_MS01_EUR_LTE)
+#if defined(CONFIG_MACH_KANAS3G_CTC) || defined(CONFIG_MACH_MS01_EUR_3G) || defined(CONFIG_MACH_MS01_EUR_LTE) || defined(CONFIG_MACH_MS01_KOR_LTE)
     /*CF open power on state soc use calculate_soc_from_voltage to calculate soc,
       voltage change fast, need short the update time to avoid soc jump*/
 	if(!chip->batt_present)

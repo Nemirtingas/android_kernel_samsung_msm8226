@@ -43,7 +43,7 @@ static struct sf_lut rbatt_sf = {
 				{817, 209, 100, 86, 80},
 				{851, 208, 97, 84, 79},
 				{887, 212, 98, 86, 81},
-#if defined(CONFIG_MACH_MS01_EUR_LTE)
+#if defined(CONFIG_MACH_MS01_EUR_LTE) || defined(CONFIG_MACH_MS01_KOR_LTE)
 				{924, 223, 99, 86, 83},
 				{961, 240, 98, 85, 82},
 				{1005, 262, 97, 85, 79},

@@ -1146,6 +1146,12 @@ config MACH_MS01_EUR_LTE
         help
           Support for the Samsung MS01 EUR LTE device
 
+config MACH_MS01_KOR_LTE
+		depends on SEC_MS01_PROJECT
+        bool "MSM8926 MS01 KOR LTE"
+        help
+          Support for the Samsung MS01 KOR LTE device
+
 config MACH_VICTOR3GDSDTV_LTN
 	bool "VICTOR3GDSDTV LTN"
         default n

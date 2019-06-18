@@ -673,7 +673,7 @@ static struct msm_gpiomux_config msm_csensor_configs[] __initdata = {
 		},
 	},
 	{
-#if defined(CONFIG_MACH_MS01_EUR_3G) || defined(CONFIG_MACH_MS01_EUR_LTE)
+#if defined(CONFIG_MACH_MS01_EUR_3G) || defined(CONFIG_MACH_MS01_EUR_LTE) || defined(CONFIG_MACH_MS01_KOR_LTE)
 		.gpio = 33, /* AF_SCL */
 #else
 		.gpio = 36, /* AF_SCL */
@@ -987,7 +987,7 @@ static struct msm_gpiomux_config hw_rev_configs[] __initdata = {
 		},
 };
 
-#if defined(CONFIG_MACH_MS01_EUR_LTE)
+#if defined(CONFIG_MACH_MS01_EUR_LTE) || defined(CONFIG_MACH_MS01_KOR_LTE)
 static struct gpiomux_setting nc_cfg = {
         .func = GPIOMUX_FUNC_GPIO,
         .drv = GPIOMUX_DRV_2MA,
@@ -1237,7 +1237,7 @@ void __init msm8226_init_gpiomux(void)
 #if defined(CONFIG_MACH_MS01_EUR_3G)
 	msm_gpiomux_install(nc_configs, ARRAY_SIZE(nc_configs));
 #endif
-#if defined(CONFIG_MACH_MS01_EUR_LTE)
+#if defined(CONFIG_MACH_MS01_EUR_LTE) || defined(CONFIG_MACH_MS01_KOR_LTE)
 	msm_gpiomux_install(nc_configs, ARRAY_SIZE(nc_configs));
 #endif
 }
